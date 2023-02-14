@@ -132,7 +132,7 @@ class OnBoardingSlider extends StatefulWidget {
 }
 
 class _OnBoardingSliderState extends State<OnBoardingSlider> {
-  PageController? _pageController;
+  PageController _pageController = PageController(initialPage: 0);
 
   int _currentPage = 0;
 
