@@ -82,6 +82,8 @@ class OnBoardingSlider extends StatefulWidget {
   final double heightButtonBottom;
   final double widthButtonBottom;
   final double iconButtonBottomSize;
+  final PageController? pageController;
+
   OnBoardingSlider({
     required this.totalPage,
     required this.changePage,
@@ -122,6 +124,7 @@ class OnBoardingSlider extends StatefulWidget {
       fontWeight: FontWeight.w500,
       fontSize: 15,
     ),
+    this.pageController,
   });
 
   @override
@@ -129,13 +132,16 @@ class OnBoardingSlider extends StatefulWidget {
 }
 
 class _OnBoardingSliderState extends State<OnBoardingSlider> {
-  final PageController _pageController = PageController(initialPage: 0);
+  PageController? _pageController;
 
   int _currentPage = 0;
 
   @override
   void initState() {
     super.initState();
+
+    _pageController = widget.pageController ?? PageController(initialPage: 0);
+
     if (widget.autoChangePage) {
       Timer.periodic(Duration(seconds: widget.timePerChangePage), (Timer timer) {
         if (_currentPage < 2) {
